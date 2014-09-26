@@ -1,0 +1,47 @@
+<h1>Chat#chat</h1>
+<p>Find me in app/views/socket/test_player.html.erb</p>
+<script type="text/javascript">
+	window.WebSocket = window.WebSocket || window.MozWebSocket;
+	if (!window.WebSocket) {
+	  alert('Sorry, but your browser doesnt support WebSockets.');
+	}
+	var connection = new WebSocket('ws://' + window.location.host + '/broadcast');
+
+	connection.onopen = function () {
+		console.log('connection opened');
+  };
+  connection.onerror = function (error) {
+    console.log('Sorry, but there\'s some problem with your connection or the server is down.' + error);
+  };
+ 	connection.onmessage = function (message) {
+ 		console.log('msg received: ' +message.data);
+ 	}
+ 	setInterval(function() {
+    if (connection.readyState !== 1) {
+      console.log('Unable to comminucate with the WebSocket server.');
+    }
+  }, 3000);
+  // setInterval(function() {
+  // 	connection.send('Yo man');
+  // }, 3000);
+</script>
+
+<script>
+console.log('<%= @offset %>');
+alert('<%= @offset %>');
+soundManager.setup({
+  //url: '/path/to/swf-files/',
+  onready: function() {
+    var mySound = soundManager.createSound({
+      id: 'aSound',
+      url: "Tum-hi-ho.mp3"
+
+    });
+		mySound.play({from: <%= @offset %> });
+    mySound.debugmode = false;
+  },
+  ontimeout: function() {
+    // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
+  }
+});
+</script>
