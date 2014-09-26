@@ -38,3 +38,10 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# jquery
+gem 'jquery-rails'
+gem 'redis'
+gem 'puma'
+gem 'tubesock'
+
+
