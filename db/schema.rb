@@ -11,16 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926131218) do
+ActiveRecord::Schema.define(version: 20140926151625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "queues", force: true do |t|
-    t.integer "song_id"
-    t.integer "user_id"
-    t.integer "status"
-  end
 
   create_table "songs", force: true do |t|
     t.string "name"
@@ -29,15 +23,30 @@ ActiveRecord::Schema.define(version: 20140926131218) do
     t.string "path"
   end
 
+  create_table "songs_queues", force: true do |t|
+    t.integer "song_id"
+    t.integer "user_id"
+    t.integer "status"
+  end
+
+  add_index "songs_queues", ["song_id", "user_id"], name: "index_songs_queues_on_song_id_and_user_id", unique: true, using: :btree
+
   create_table "user_queues", force: true do |t|
-    t.integer "queue_id"
+    t.integer "songs_queue_id"
     t.integer "user_id"
     t.integer "vote"
   end
 
+  add_index "user_queues", ["user_id", "songs_queue_id"], name: "index_user_queues_on_user_id_and_songs_queue_id", unique: true, using: :btree
+
   create_table "users", force: true do |t|
-    t.string "name"
-    t.string "email"
+    t.string   "name"
+    t.string   "email"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
+    t.string   "token"
+    t.datetime "expires_at"
   end
 
 end
