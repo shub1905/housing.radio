@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926142707) do
+ActiveRecord::Schema.define(version: 20140926151625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,13 @@ ActiveRecord::Schema.define(version: 20140926142707) do
   add_index "user_queues", ["user_id", "songs_queue_id"], name: "index_user_queues_on_user_id_and_songs_queue_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string "name"
-    t.string "email"
+    t.string   "name"
+    t.string   "email"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
+    t.string   "token"
+    t.datetime "expires_at"
   end
 
 end

@@ -1,3 +1,11 @@
+<div class="header">
+	<h1>HOUSING <strong>RADIO</strong></h1>
+	<% if current_user %>
+		<%= link_to 'Logout', sessions_destroy_path, :method => :delete %>
+	<% else %>
+		<%= link_to 'Login', sessions_path(:provider => "facebook")  %>
+	<% end %>
+</div>
 <div class="song_view">
 
 </div>
