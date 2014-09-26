@@ -2,6 +2,7 @@ class RadioController < ApplicationController
   PATH = "shubhamb.housing.com:3000/"
 
   def index
+    @queue_songs = Song.first(10)
   end
 
   def broadcast_message(flag)
