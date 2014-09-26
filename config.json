@@ -1,0 +1,10 @@
+{
+	"psql" : {
+		"DB_NAME" : "housing_radio_production",
+		"DB_USER" : "housing",
+		"DB_HOST" : "10.1.10.4",
+		"DB_PASS" : "housing",
+		"DB_PORT" : 5432
+	},
+	"file_type": "*.mp3"
+}
