@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   has_many :user_queues
   
   def self.omniauth(auth)
-    debugger
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
