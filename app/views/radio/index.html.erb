@@ -8,23 +8,25 @@
 		<p><%= link_to 'Login', '/auth/facebook'  %></p>
 	<% end %>
 </div>
-<div class="song_view">
+<% if current_user %>
+	<div class="song_view">
 
-</div>
-<div class="song_list">
-	<ul>
-		<li>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Another Song sdfafadsffasf</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-		</li>
-	</ul>
+	</div>
+	<div class="song_list">
+		<ul>
+			<li>
+				<p>Some song  sdfdafdsafdafads</p>
+				<p>Another Song sdfafadsffasf</p>
+				<p>Some song  sdfdafdsafdafads</p>
+				<p>Some song  sdfdafdsafdafads</p>
+				<p>Some song  sdfdafdsafdafads</p>
+				<p>Some song  sdfdafdsafdafads</p>
+				<p>Some song  sdfdafdsafdafads</p>
+				<p>Some song  sdfdafdsafdafads</p>
+				<p>Some song  sdfdafdsafdafads</p>
+				<p>Some song  sdfdafdsafdafads</p>
+			</li>
+		</ul>
 
-</div>
+	</div>
+<% end %>
