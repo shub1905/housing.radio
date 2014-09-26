@@ -22,14 +22,14 @@ module Api
     def upvote_song
       song_id = params[:id].to_i
       user_id = current_user.id
-      response = Api::UserQueue.upvote(song_id, user_id)
+      response = Api::UserQueueJoin.upvote(song_id, user_id)
       render json: response
     end
 
     def downvote_song
       song_id = params[:id].to_i
       user_id = current_user.id
-      response = Api::UserQueue.downvote(song_id, user_id)
+      response = Api::UserQueueJoin.downvote(song_id, user_id)
       render json: response
     end
 
