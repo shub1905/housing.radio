@@ -1,9 +1,7 @@
 module Api
   class RadioController < ApiController
 
-    def current_user
-      api = Api::Song.new
-      current_user = api.current_user
+    def get_current_user
       render :json => current_user, :status => 200
     end
 
