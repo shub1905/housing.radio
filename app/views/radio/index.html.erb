@@ -1,3 +1,4 @@
+<% if current_user %>
 <div class="header">
 	<h1>HOUSING <span>RADIO</span></h1>
 	<% if current_user %>
@@ -15,7 +16,6 @@
 <br>
 <%= link_to "Downvote Song", api_downvote_song_path(:id => 6), :method => 'POST' %>
 
-<% if current_user %>
 <div class="song_view">
 </div>
 <div class="song_list">
@@ -35,4 +35,85 @@
 	</ul>
 
 </div>
+
+<% else %>
+<div class="main">
+	<header>
+		<div class="top-header">
+			<%= image_tag 'radio.png', height: '32', width: '33' %>
+		</div>
+		<div class="wrap">
+			<%= image_tag 'iphone.png', height: '532', width: '252', class: 'header-img'  %>
+			<div class="header-wrapper">
+				<h1>Play Music <span>socially</span></h1>
+				<p>Stream music across your network seamlessly. Rate songs and make anouncements.</p>
+				<p class="autor"><a href="#">Team Radiant</a></p>
+				<div class="buttons-wrapper">
+					<a href="/auth/facebook" class="button">Login</a>
+					<a href="#info" class="button button-stripe">Learn more</a>
+				</div>
+			</div>
+			<!-- /.header-wrapper -->
+		</div>
+		<!-- /.wrap -->
+	</header>
+	<div class="spanning">
+		<a name="info"></a>
+		<div class="promo clearfix">
+			<div class="wrap">
+				<div class="promo-wrapper clearfix">
+					<div class="promo-column">
+						<%= image_tag 'pin.png', height: '32', width: '33' %>
+						<h5>Places</h5>
+						<p>Seamlessly empower fully researched growth strategies and interoperable internal sources.</p>
+					</div>
+					<div class="promo-column">
+						<%= image_tag 'settings.png', height: '32', width: '33' %>
+						<h5>Settings</h5>
+						<p>Collaboratively administrate turnkey channels whereas virtual e-tailers an other media. </p>
+					</div>
+					<div class="promo-column">
+						<%= image_tag 'easy.png', height: '32', width: '33' %>
+						<h5>Easy</h5>
+						<p>Interactively procrastinate high-payoff content without backward-compatible data. </p>
+					</div>
+					<div class="promo-column">
+						<%= image_tag 'saturn.png', height: '32', width: '33' %>
+						<h5>Global</h5>
+						<p>Credibly innovate granular internal or "organic" sources whereas high standards in web-readiness. </p>
+					</div>
+				</div>
+			</div>
+			<!-- /.wrap -->
+		</div>
+		<div class="comments clearfix">
+			<div class="wrap">
+				<div class="tab">
+					<div class="box visible">
+						<h4>People talking about <a href="#">#SocialRadio</a></h4>
+						<p>Join our #WalkandRide adventure. Meet up in London this Saturday! Spread the word and join us for fun.</p>
+					</div>
+					<div class="box">
+						<h4>Users loving <a href="#">#WalkandRide</a></h4>
+						<p>Joining this weekend's #WalkandRide fun! @emmy_lemmy bring your dogs, we can make it a fun walk!</p>
+					</div>
+					<div class="box">
+						<h4>Folks enjoying <a href="#">#WalkandRide</a></h4>
+						<p>Nothing to fear, the new #WalkandRide has my tiny street covered, so cool and such a powerful app.</p>
+					</div>
+					<ul class="tabs">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+					</ul>
+					<a href="#" class="tab-prev"></a>
+					<a href="#" class="tab-next"></a>
+				</div>
+			</div>
+			<!-- /.wrap -->
+		</div>
+		<!-- /.newsletter clearfix -->
+	</div>
+</div>
+<!-- /.main -->
 <% end %>

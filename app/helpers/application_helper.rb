@@ -5,6 +5,5 @@ module ApplicationHelper
       return User.find(session[:user_id])
     end
     return nil
-  
   end
 end
