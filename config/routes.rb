@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   ##### API ROUTES ######
   namespace :api do 
     get 'radio/search_songs' => 'radio#search_songs'
+    post 'radio/upvote_song/:id' => 'radio#upvote_song'
+    post 'radio/downvote_song/:id' => 'radio#downvote_song'
   end
 
   resource :radio
