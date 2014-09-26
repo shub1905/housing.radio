@@ -19,12 +19,20 @@
 	</div>
 </div>
 <div class="song-list">
-		<ul>
-			<li><p class="song-name">Sample Song</p><p class="song-artist">Iron Maiden</p><p class="song-duration">4:32</p><p class="vote">45</p></li>
-			<li><p class="song-name">Sample Song</p><p class="song-artist">Iron Maiden</p><p class="song-duration">4:32</p><p class="vote">45</p></li>
-			<li><p class="song-name">Sample Song</p><p class="song-artist">Iron Maiden</p><p class="song-duration">4:32</p><p class="vote">45</p></li>
-			<li><p class="song-name">Sample Song</p><p class="song-artist">Iron Maiden</p><p class="song-duration">4:32</p><p class="vote">45</p></li>
-		</ul>
+	<input type=search name=s class="search" placeholder="search for a song">
+	<ul>
+		<% @queue_songs.each_with_index do |song, index| %>
+			<% if index < 2 %>
+				<li class="queue-fixed">
+			<% elsif index == 2 %>
+				<li class = "playing" >
+			<% else %>
+				<li>
+			<% end %>
+				<p class="song-name"><%= song.name %></p><p class="song-duration">4:32</p><p class="song-artist"><%= song.artist %></p><p class="vote">45</p><div class="clear"></div>
+			</li>
+		<% end %>
+	</ul>
 </div>
 <div class = "clear"></div>
 <% #link_to "Add Song", api_add_song_path(:id => 5), :method => 'POST' %>
