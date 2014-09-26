@@ -1,9 +1,11 @@
 <div class="header">
-	<h1>HOUSING <strong>RADIO</strong></h1>
+	<h1>HOUSING <span>RADIO</span></h1>
 	<% if current_user %>
-		<%= link_to 'Logout', sessions_destroy_path, :method => :delete %>
+		<p><%= link_to 'Logout', sessions_destroy_path %></p>
+		<p><%= current_user.name %></p>
+		<div class="circular"><%= image_tag current_user.image %></div>
 	<% else %>
-		<%= link_to 'Login', sessions_path(:provider => "facebook")  %>
+		<p><%= link_to 'Login', '/auth/facebook'  %></p>
 	<% end %>
 </div>
 <div class="song_view">
