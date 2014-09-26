@@ -14,7 +14,10 @@ div.header{
 	color: #FFF;
 	p{
 		float: right;
+		margin: 0px;
+		padding: 0px;
 		margin-right: 20px;
+		line-height: 60px;
 	}
 	div.circular img{
 		float: right;
@@ -30,7 +33,8 @@ div.header{
 		color: #FFF;
 		font-size: 24px;
 		margin: 0px;
-		padding: 10px;
+		padding: 0px 10px;
+		line-height: 60px;
 		float: left;
 		font-weight: normal;
 		span{
