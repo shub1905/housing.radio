@@ -2,8 +2,6 @@ development:
   adapter: postgresql
   database: housing_radio_production
   pool: 5
-  host: 10.1.10.4
-  port: 5432    
   timeout: 5000
   username: housing
   password: housing
