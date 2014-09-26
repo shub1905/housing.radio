@@ -16,6 +16,14 @@ ActiveRecord::Schema.define(version: 20140926162448) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "queue_songs", force: true do |t|
+    t.integer "song_id"
+    t.integer "user_id"
+    t.integer "status"
+  end
+
+  add_index "queue_songs", ["song_id"], name: "index_queue_songs_on_song_id", unique: true, using: :btree
+
   create_table "songs", force: true do |t|
     t.string "name"
     t.string "album"
@@ -23,21 +31,13 @@ ActiveRecord::Schema.define(version: 20140926162448) do
     t.string "path"
   end
 
-  create_table "songs_queues", force: true do |t|
-    t.integer "song_id"
-    t.integer "user_id"
-    t.integer "status"
-  end
-
-  add_index "songs_queues", ["song_id", "user_id"], name: "index_songs_queues_on_song_id_and_user_id", unique: true, using: :btree
-
-  create_table "user_queues", force: true do |t|
-    t.integer "songs_queue_id"
+  create_table "user_queue_joins", force: true do |t|
+    t.integer "queue_song_id"
     t.integer "user_id"
     t.integer "vote"
   end
 
-  add_index "user_queues", ["user_id", "songs_queue_id"], name: "index_user_queues_on_user_id_and_songs_queue_id", unique: true, using: :btree
+  add_index "user_queue_joins", ["user_id", "queue_song_id"], name: "index_user_queue_joins_on_user_id_and_queue_song_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

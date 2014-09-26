@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   namespace :api do 
     get 'radio/search_songs' => 'radio#search_songs'
     get 'radio/user' => 'radio#get_current_user'
-    post 'radio/upvote_song/:id' => 'radio#upvote_song'
-    post 'radio/downvote_song/:id' => 'radio#downvote_song'
+    post 'radio/add_song/:id' => 'radio#enqueue', :as => 'add_song'
+    post 'radio/upvote_song/:id' => 'radio#upvote_song', :as => 'upvote_song'
+    post 'radio/downvote_song/:id' => 'radio#downvote_song', :as => 'downvote_song'
   end
 
   resource :radio

@@ -1,31 +1,38 @@
 <div class="header">
 	<h1>HOUSING <span>RADIO</span></h1>
 	<% if current_user %>
-		<p><%= link_to 'Logout', sessions_destroy_path %></p>
-		<p><%= current_user.name %></p>
-		<div class="circular"><%= image_tag current_user.image %></div>
+	<p><%= link_to 'Logout', sessions_destroy_path %></p>
+	<p><%= current_user.name %></p>
+	<div class="circular"><%= image_tag current_user.image %></div>
 	<% else %>
-		<p><%= link_to 'Login', '/auth/facebook'  %></p>
+	<p><%= link_to 'Login', '/auth/facebook'  %></p>
 	<% end %>
 </div>
-<% if current_user %>
-	<div class="song_view">
-	</div>
-	<div class="song_list">
-		<ul>
-			<li>
-				<p>Some song  sdfdafdsafdafads</p>
-				<p>Another Song sdfafadsffasf</p>
-				<p>Some song  sdfdafdsafdafads</p>
-				<p>Some song  sdfdafdsafdafads</p>
-				<p>Some song  sdfdafdsafdafads</p>
-				<p>Some song  sdfdafdsafdafads</p>
-				<p>Some song  sdfdafdsafdafads</p>
-				<p>Some song  sdfdafdsafdafads</p>
-				<p>Some song  sdfdafdsafdafads</p>
-				<p>Some song  sdfdafdsafdafads</p>
-			</li>
-		</ul>
 
-	</div>
+<%= link_to "Add Song", api_add_song_path(:id => 5), :method => 'POST' %>
+<br>
+<%= link_to "Upvote Song", api_upvote_song_path(:id => 5), :method => 'POST' %>
+<br>
+<%= link_to "Downvote Song", api_downvote_song_path(:id => 6), :method => 'POST' %>
+
+<% if current_user %>
+<div class="song_view">
+</div>
+<div class="song_list">
+	<ul>
+		<li>
+			<p>Some song  sdfdafdsafdafads</p>
+			<p>Another Song sdfafadsffasf</p>
+			<p>Some song  sdfdafdsafdafads</p>
+			<p>Some song  sdfdafdsafdafads</p>
+			<p>Some song  sdfdafdsafdafads</p>
+			<p>Some song  sdfdafdsafdafads</p>
+			<p>Some song  sdfdafdsafdafads</p>
+			<p>Some song  sdfdafdsafdafads</p>
+			<p>Some song  sdfdafdsafdafads</p>
+			<p>Some song  sdfdafdsafdafads</p>
+		</li>
+	</ul>
+
+</div>
 <% end %>

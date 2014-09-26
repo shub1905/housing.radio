@@ -12,17 +12,24 @@ module Api
       render json: songs
     end
 
-    def upvote_song
+    def enqueue
       song_id = params[:id].to_i
-      user_id = @current_user.id
-      response = Api::SongsQueue.upvote(song_id, user_id)
+      user_id = current_user.id
+      response = Api::QueueSong.enqueue(song_id, user_id)
       render json: response
     end
 
     def upvote_song
       song_id = params[:id].to_i
       user_id = current_user.id
-      response = Api::SongsQueue.downvotesvote(song_id, user_id)
+      response = Api::UserQueue.upvote(song_id, user_id)
+      render json: response
+    end
+
+    def downvote_song
+      song_id = params[:id].to_i
+      user_id = current_user.id
+      response = Api::UserQueue.downvote(song_id, user_id)
       render json: response
     end
 
