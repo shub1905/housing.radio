@@ -1,9 +1,6 @@
 module Api
   class Song
-  
-    def current_user
-    end
-  
+    
     def get_songs(query)
       songs_by_name = ::Song.where("name ilike ?", "%#{query}%")
       songs_by_artist = ::Song.where("artist ilike ?", "%#{query}%")
