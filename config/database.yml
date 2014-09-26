@@ -5,6 +5,8 @@ development:
   timeout: 5000
   username: housing
   password: housing
+  host: 10.1.10.4
+  port: 5432
   su_username: housing_su
   su_password: housing
 
