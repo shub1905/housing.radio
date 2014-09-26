@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   resource :radio
 
+  root 'song_player#index'
+  get 'auth/:provider/callback', to: 'sessions#create', as: 'sessions'
+  get 'logout', to: 'sessions#destroy', as: 'sessions_destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
