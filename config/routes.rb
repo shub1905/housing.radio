@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  root 'song_player#index'
+  
+  ##### ROOT PATH #####
+  root 'radio#index'
+
+  ##### API ROUTES ######
+  namespace :api do 
+    get 'radio/search_songs' => 'radio#search_songs'
+  end
+
+  resource :radio
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
