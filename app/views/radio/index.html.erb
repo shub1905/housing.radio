@@ -28,7 +28,7 @@
 			<% else %>
 				<li>
 			<% end %>
-				<p class="song-name"><%= song.name %></p><p class="song-duration">4:32</p><p class="song-artist"><%= song.artist %></p><p class="vote">45</p><div class="clear"></div>
+				<p class="song-name"><%= song["name"] %></p><p class="song-duration">4:32</p><p class="song-artist"><%= song["artist"] %></p><p class="vote">45</p><div class="clear"></div>
 			</li>
 		<% end %>
 	</ul>
@@ -37,6 +37,28 @@
 <% #link_to "Add Song", api_add_song_path(:id => 5), :method => 'POST' %>
 <% #link_to "Upvote Song", api_upvote_song_path(:id => 5), :method => 'POST' %>
 <% #link_to "Downvote Song", api_downvote_song_path(:id => 6), :method => 'POST' %>
+
+<script>
+console.log('<%= @offset %>');
+//alert('<%= @offset %>');
+//var temp = ;
+debugger
+soundManager.setup({
+  //url: '/path/to/swf-files/',
+  onready: function() {
+    var mySound = soundManager.createSound({
+      id: 'aSound',
+      url: "<%= raw(@path + @queue_songs[0]["path"].html_safe) %>"
+
+    });
+		mySound.play({from: 0 });
+    mySound.debugmode = false;
+  },
+  ontimeout: function() {
+    // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
+  }
+});
+</script>
 
 <% else %>
 <div class="main">
