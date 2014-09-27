@@ -5,7 +5,7 @@ class RadioController < ApplicationController
     @queue_songs = Song.first(10)
   end
 
-  def broadcast_message(flag)
+  def self.broadcast_message(flag)
     result = {}
 
     current_queue_song = QueueSong.where(:status => 0).first # this should be only 1 current entry
@@ -17,9 +17,9 @@ class RadioController < ApplicationController
     end
 
     result[:current_song] = {:id => current_song.id, :path => PATH + current_song.path, 
-                             :added_by => current_song_added_by, :score => current_song_score}
+     :added_by => current_song_added_by, :score => current_song_score}
 
-    songs_arr = []
+     songs_arr = []
     queue_songs = QueueSong.where(:status => [1,2]).all # all songs other than current playing song
     queue_songs.each do |queue_song|
       if queue_song.present?
@@ -29,12 +29,12 @@ class RadioController < ApplicationController
                       UserQueueJoin.where(:queue_id => queue_song.user_id, :vote => 0).count
       end
       song_hash = {
-                    :type => QueueSong::STATUS_MAPPING[queue_song.status],
-                    :id => song.id,
-                    :path => PATH + song.path,
-                    :added_by => added_by,
-                    :score => song_score
-                  }
+        :type => QueueSong::STATUS_MAPPING[queue_song.status],
+        :id => song.id,
+        :path => PATH + song.path,
+        :added_by => added_by,
+        :score => song_score
+      }
       songs_arr << song_hash
     end
 
