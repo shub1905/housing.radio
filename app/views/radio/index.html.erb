@@ -13,9 +13,7 @@
 <div class="song-view">
 	<div class="song-inside">
 		<%= image_tag 'sample_cover.jpg', class: "song-cover" %>
-		<h2 class="song-title">Stariway to Heaven</h2>
-		<h3 class="song-artist">Led Zepplin</h3>
-		<div class="pause-button"></div>
+		<h2 class="song-title">Muse</h2>
 		<div class="clear"></div>
 	</div>
 </div>
@@ -55,13 +53,14 @@ playNextSong = function ()
 	console.log('next');
 	counter++;
 	mySound = soundManager.createSound({
-      id: 'aSound'+ counter,
+      id: 'aSound' + counter.toString(),
       url: song[counter],
         onfinish: function(){
-    	console.log('end');
-    	playNextSong();
-    }
+	    	console.log('end');
+	    	playNextSong();
+    	}
     });
+    mySound.play({from: 0 });
 }
 
 
