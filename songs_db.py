@@ -24,7 +24,7 @@ def insert_in_db(db_con):
 	cursor = db_con.cursor()
 
 	#file listing
-	for root, dirnames, filenames in os.walk('app/assets/music'):
+	for root, dirnames, filenames in os.walk('music'):
 		for filename in fnmatch.filter(filenames, file_type):
 			music_file = os.path.join(root, filename)
 			try:
@@ -32,7 +32,10 @@ def insert_in_db(db_con):
 				album = file.tag.album
 				artist = file.tag.artist
 				title = file.tag.title
-				cursor.execute("""insert into songs (name, album, artist, path) values (%s, %s, %s, %s);""",(title,album,artist,music_file))
+				duration = file.info.time_secs
+				m,s = divmod(duration,60)
+				duration = '{}:{}'.format(m,s)
+				cursor.execute("""insert into songs (name, album, artist, path, duration) values (%s, %s, %s, %s, %s);""",(title,album,artist,music_file,duration))
 				db_con.commit()
 			except Exception as e:
 				print e

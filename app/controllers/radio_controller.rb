@@ -8,7 +8,7 @@ class RadioController < ApplicationController
     
     
     #@queue_songs = @queue_songs.map{|e| e.merge("path" => URI.escape(PATH + e["path"], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")))}
-    set_start_time unless Redis.new.exists('start_time')
+    set_start_time if  !Redis.new.exists('start_time') 
 
     @offset = ((DateTime.now.to_i - Redis.new.get('start_time').to_i) * 1000).to_i
   end

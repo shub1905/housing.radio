@@ -40,24 +40,46 @@
 
 <script>
 console.log('<%= @offset %>');
-//alert('<%= @offset %>');
-//var temp = ;
-debugger
-soundManager.setup({
-  //url: '/path/to/swf-files/',
-  onready: function() {
-    var mySound = soundManager.createSound({
-      id: 'aSound',
-      url: "<%= raw(@path + @queue_songs[0]["path"].html_safe) %>"
-
+obj = "<%= @queue_songs.as_json %>";
+song = [];
+song[0] = "<%= raw(@queue_songs[0]["path"].html_safe) %>";
+song[1] = "<%= raw(@queue_songs[1]["path"].html_safe) %>";
+song[2] = "<%= raw(@queue_songs[2]["path"].html_safe) %>";
+//q_songs = JSON.parse(obj);
+counter = 0;
+playNextSong = function ()
+{
+	console.log('next');
+	counter++;
+	mySound = soundManager.createSound({
+      id: 'aSound'+ counter,
+      url: song[counter],
+        onfinish: function(){
+    	console.log('end');
+    	playNextSong();
+    }
     });
-		mySound.play({from: 0 });
-    mySound.debugmode = false;
+}
+
+
+soundManager.setup({
+  onready: function() {
+     mySound = soundManager.createSound({
+      id: 'aSound',
+      url: "<%= raw(@queue_songs[0]["path"].html_safe) %>",
+      onfinish: function(){
+    	console.log('end');
+    	playNextSong();
+    }
+    });
+	mySound.play({from: '<%= @offset %>' });
   },
   ontimeout: function() {
     // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
   }
 });
+
+soundManager.debugMode = false;
 </script>
 
 <% else %>
