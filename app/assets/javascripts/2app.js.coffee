@@ -40,6 +40,8 @@ $(document).ready(() ->
 						type: 'POST'
 						url: url
 						success: (res) =>
+							if res.text is "Already Voted"
+								@$el.find(".post-vote[data-song-id=\"#{res.id}\"]").hide()
 
 				else if $(e.currentTarget).hasClass('downvote')
 					id = $(e.currentTarget).data('songId')
@@ -48,6 +50,8 @@ $(document).ready(() ->
 						type: 'POST'
 						url: url
 						success: (res) =>
+							if res.text is "Already Voted"
+								@$el.find(".post-vote[data-song-id=\"#{res.id}\"]").hide()
 
 				)
 
