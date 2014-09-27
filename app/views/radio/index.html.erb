@@ -1,20 +1,122 @@
-<div class="song_view">
-
+<% if current_user %>
+<div class="header">
+	<h1><a href="/">HOUSING <span>RADIO</span></a></h1>
+	<% if current_user %>
+	<p><%= link_to 'Logout', sessions_destroy_path %></p>
+	<p><%= current_user.name %></p>
+	<div class="circular"><%= image_tag current_user.image %></div>
+	<% else %>
+	<p><%= link_to 'Login', '/auth/facebook'  %></p>
+	<% end %>
 </div>
-<div class="song_list">
+
+<div class="song-view">
+	<div class="song-inside">
+		<%= image_tag 'sample_cover.jpg', class: "song-cover" %>
+		<h2>Stariway to Heaven</h2>
+		<h3>Led Zepplin</h3>
+	</div>
+</div>
+<div class="song-list">
+	<input type=search name=s class="search" placeholder="search for a song">
 	<ul>
-		<li>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Another Song sdfafadsffasf</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-			<p>Some song  sdfdafdsafdafads</p>
-		</li>
+		<% @queue_songs.each_with_index do |song, index| %>
+			<% if index < 2 %>
+				<li class="queue-fixed">
+			<% elsif index == 2 %>
+				<li class = "playing" >
+			<% else %>
+				<li>
+			<% end %>
+				<p class="song-name"><%= song.name %></p><p class="song-duration">4:32</p><p class="song-artist"><%= song.artist %></p><p class="vote">45</p><div class="clear"></div>
+			</li>
+		<% end %>
 	</ul>
-
 </div>
+<div class = "clear"></div>
+<% #link_to "Add Song", api_add_song_path(:id => 5), :method => 'POST' %>
+<% #link_to "Upvote Song", api_upvote_song_path(:id => 5), :method => 'POST' %>
+<% #link_to "Downvote Song", api_downvote_song_path(:id => 6), :method => 'POST' %>
+
+<% else %>
+<div class="main">
+	<header>
+		<div class="wrap">
+			<div class="top-header">
+				<%= image_tag 'radio.png' %>
+				<p><a href="/">Social Radio</a></p>
+			</div>
+			<%= image_tag 'iphone.png', height: '532', width: '252', class: 'header-img'  %>
+			<div class="header-wrapper">
+				<h1>Play Music <span>socially</span></h1>
+				<p>Stream music across your network seamlessly. Rate songs and make anouncements.</p>
+				<p class="autor"><a href="#">Team Radiant</a></p>
+				<div class="buttons-wrapper">
+					<a href="/auth/facebook" class="button">Login</a>
+					<a href="#info" class="button button-stripe">Learn more</a>
+				</div>
+			</div>
+			<!-- /.header-wrapper -->
+		</div>
+		<!-- /.wrap -->
+	</header>
+	<div class="spanning">
+		<a name="info"></a>
+		<div class="promo clearfix">
+			<div class="wrap">
+				<div class="promo-wrapper clearfix">
+					<div class="promo-column">
+						<%= image_tag 'pin.png', height: '32', width: '33' %>
+						<h5>Places</h5>
+						<p>Seamlessly empower fully researched growth strategies and interoperable internal sources.</p>
+					</div>
+					<div class="promo-column">
+						<%= image_tag 'settings.png', height: '32', width: '33' %>
+						<h5>Settings</h5>
+						<p>Collaboratively administrate turnkey channels whereas virtual e-tailers an other media. </p>
+					</div>
+					<div class="promo-column">
+						<%= image_tag 'easy.png', height: '32', width: '33' %>
+						<h5>Easy</h5>
+						<p>Interactively procrastinate high-payoff content without backward-compatible data. </p>
+					</div>
+					<div class="promo-column">
+						<%= image_tag 'saturn.png', height: '32', width: '33' %>
+						<h5>Global</h5>
+						<p>Credibly innovate granular internal or "organic" sources whereas high standards in web-readiness. </p>
+					</div>
+				</div>
+			</div>
+			<!-- /.wrap -->
+		</div>
+		<div class="comments clearfix">
+			<div class="wrap">
+				<div class="tab">
+					<div class="box visible">
+						<h4>People talking about <a href="#">#SocialRadio</a></h4>
+						<p>Join our #WalkandRide adventure. Meet up in London this Saturday! Spread the word and join us for fun.</p>
+					</div>
+					<div class="box">
+						<h4>Users loving <a href="#">#WalkandRide</a></h4>
+						<p>Joining this weekend's #WalkandRide fun! @emmy_lemmy bring your dogs, we can make it a fun walk!</p>
+					</div>
+					<div class="box">
+						<h4>Folks enjoying <a href="#">#WalkandRide</a></h4>
+						<p>Nothing to fear, the new #WalkandRide has my tiny street covered, so cool and such a powerful app.</p>
+					</div>
+					<ul class="tabs">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+					</ul>
+					<a href="#" class="tab-prev"></a>
+					<a href="#" class="tab-next"></a>
+				</div>
+			</div>
+			<!-- /.wrap -->
+		</div>
+		<!-- /.newsletter clearfix -->
+	</div>
+</div>
+<!-- /.main -->
+<% end %>

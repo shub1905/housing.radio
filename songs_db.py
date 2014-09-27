@@ -20,13 +20,28 @@ def establish_conn():
 	return db_con
 
 def insert_in_db(db_con):
-	for root, dirnames, filenames in os.walk('Music'):
-	  for filename in fnmatch.filter(filenames, file_type):
-	      music_file = os.path.join(root, filename)
-	      try:
-		      file = eyed3.core.load(music_file)
-		      album = file.tag.album
-		      artist = file.tag.artist
-		      title = file.tag.title
-		  except:
-		  		print music_file, 'not found'
+	#db handle
+	cursor = db_con.cursor()
+
+	#file listing
+	for root, dirnames, filenames in os.walk('app/assets/music'):
+		for filename in fnmatch.filter(filenames, file_type):
+			music_file = os.path.join(root, filename)
+			try:
+				file = eyed3.core.load(music_file)
+				album = file.tag.album
+				artist = file.tag.artist
+				title = file.tag.title
+				cursor.execute("""insert into songs (name, album, artist, path) values (%s, %s, %s, %s);""",(title,album,artist,music_file))
+				db_con.commit()
+			except Exception as e:
+				print e
+	cursor.close()
+	db_con.close()
+
+def main():
+	db_con = establish_conn()
+	insert_in_db(db_con)
+
+if __name__ == "__main__":
+	main()

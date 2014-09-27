@@ -11,33 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926131218) do
+ActiveRecord::Schema.define(version: 20140926221714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "queues", force: true do |t|
+  create_table "queue_songs", force: true do |t|
     t.integer "song_id"
     t.integer "user_id"
     t.integer "status"
   end
+
+  add_index "queue_songs", ["song_id"], name: "index_queue_songs_on_song_id", unique: true, using: :btree
 
   create_table "songs", force: true do |t|
     t.string "name"
     t.string "album"
     t.string "artist"
     t.string "path"
+    t.string "duration"
   end
 
-  create_table "user_queues", force: true do |t|
+  create_table "user_queue_joins", force: true do |t|
     t.integer "queue_id"
     t.integer "user_id"
     t.integer "vote"
   end
 
+  add_index "user_queue_joins", ["user_id", "queue_id"], name: "index_user_queue_joins_on_user_id_and_queue_id", unique: true, using: :btree
+
   create_table "users", force: true do |t|
-    t.string "name"
-    t.string "email"
+    t.string   "name"
+    t.string   "email"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
+    t.string   "token"
+    t.datetime "expires_at"
+    t.integer  "roles"
   end
 
 end
