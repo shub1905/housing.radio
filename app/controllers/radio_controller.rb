@@ -2,7 +2,15 @@ class RadioController < ApplicationController
   PATH = "shubhamb.housing.com:3000/"
 
   def index
+    @path = PATH
     @queue_songs = Song.first(10)
+  #@queue_songs = @queue_songs.as_json
+    
+    
+    #@queue_songs = @queue_songs.map{|e| e.merge("path" => URI.escape(PATH + e["path"], Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")))}
+    set_start_time if  !Redis.new.exists('start_time') 
+
+    @offset = ((DateTime.now.to_i - Redis.new.get('start_time').to_i) * 1000).to_i
   end
 
   def self.broadcast_message(flag)
@@ -42,4 +50,13 @@ class RadioController < ApplicationController
 
     result
   end
+
+  def set_start_time
+    Redis.new.set('start_time',DateTime.now.to_i)
+  end
+
+  def reset_start_time
+    Redis.new.del 'start_time'
+  end
+
 end

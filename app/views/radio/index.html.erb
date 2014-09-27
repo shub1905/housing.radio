@@ -30,7 +30,7 @@
 			<% else %>
 				<li>
 			<% end %>
-				<p class="song-name"><%= song.name %></p><p class="song-duration">4:32</p><p class="song-artist"><%= song.artist %></p><p class="vote">45</p><div class="clear"></div>
+				<p class="song-name"><%= song["name"] %></p><p class="song-duration">4:32</p><p class="song-artist"><%= song["artist"] %></p><p class="vote">45</p><div class="clear"></div>
 			</li>
 			<% end %> -->
 		</ul>
@@ -40,7 +40,76 @@
 	<% #link_to "Upvote Song", api_upvote_song_path(:id => 5), :method => 'POST' %>
 	<% #link_to "Downvote Song", api_downvote_song_path(:id => 6), :method => 'POST' %>
 
-	<% else %>
+
+<script>
+console.log('<%= @offset %>');
+obj = "<%= @queue_songs.as_json %>";
+song = [];
+song[0] = "<%= raw(@queue_songs[0]["path"].html_safe) %>";
+song[1] = "<%= raw(@queue_songs[1]["path"].html_safe) %>";
+song[2] = "<%= raw(@queue_songs[2]["path"].html_safe) %>";
+//q_songs = JSON.parse(obj);
+counter = 0;
+playNextSong = function ()
+{
+	console.log('next');
+	counter++;
+	mySound = soundManager.createSound({
+      id: 'aSound'+ counter,
+      url: song[counter],
+        onfinish: function(){
+    	console.log('end');
+    	playNextSong();
+    }
+    });
+}
+
+
+soundManager.setup({
+  onready: function() {
+     mySound = soundManager.createSound({
+      id: 'aSound',
+      url: "<%= raw(@queue_songs[0]["path"].html_safe) %>",
+      onfinish: function(){
+    	console.log('end');
+    	playNextSong();
+    }
+    });
+	mySound.play({from: '<%= @offset %>' });
+  },
+  ontimeout: function() {
+    // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
+  }
+});
+
+soundManager.debugMode = false;
+</script>
+
+<% else %>
+<div class="main">
+	<header>
+		<div class="wrap">
+			<div class="top-header">
+				<%= image_tag 'radio.png' %>
+				<p><a href="/">Social Radio</a></p>
+			</div>
+			<%= image_tag 'iphone.png', height: '532', width: '252', class: 'header-img'  %>
+			<div class="header-wrapper">
+				<h1>Play Music <span>socially</span></h1>
+				<p>Stream music across your network seamlessly. Rate songs and make anouncements.</p>
+				<p class="autor"><a href="#">Team Radiant</a></p>
+				<div class="buttons-wrapper">
+					<a href="/auth/facebook" class="button">Login</a>
+					<a href="#info" class="button button-stripe">Learn more</a>
+				</div>
+			</div>
+			<!-- /.header-wrapper -->
+		</div>
+		<!-- /.wrap -->
+	</header>
+	<div class="spanning">
+		<a name="info"></a>
+		<div class="promo clearfix">
 	<!-- landing page -->
 	<div class="main">
 		<header>
