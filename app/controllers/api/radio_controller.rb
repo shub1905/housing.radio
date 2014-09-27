@@ -33,7 +33,9 @@ module Api
     def downvote_song
       song_id = params[:id].to_i
       user_id = current_user.id
-      response = Api::UserQueueJoin.downvote(song_id, user_id)
+      response = {}
+      response[:text] = Api::UserQueueJoin.downvote(song_id, user_id)
+      response[:id] = song_id
       render json: response
     end
 
