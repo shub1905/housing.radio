@@ -19,7 +19,7 @@
 </div>
 <div class="song-list">
 	<input type=search name=s class="search" placeholder="search for a song">
-	<ul>
+	<ul class="song-list-container">
 		<% @queue_songs.each_with_index do |song, index| %>
 			<% if index < 2 %>
 				<li class="queue-fixed">
@@ -39,6 +39,7 @@
 <% #link_to "Downvote Song", api_downvote_song_path(:id => 6), :method => 'POST' %>
 
 <% else %>
+<!-- landing page -->
 <div class="main">
 	<header>
 		<div class="wrap">
@@ -120,3 +121,23 @@
 </div>
 <!-- /.main -->
 <% end %>
+
+<!-- templates -->
+<script id="song-template" type="text/template">
+	<li>
+		<p class="song-name"></p>
+		<p class="song-duration"></p>
+		<p class="dong-artist"></p>
+		<p class="vote"></p>
+		<p class="upvote"></p>
+		<p class="downvote"></p>
+		<div class="clear"></div>
+	</li>
+</script>
+<script id="data-songs" type="application/json">
+	<%= @queue_songs.to_json %>
+</script>
+
+<script>
+	var songs = JSON.parse($('#data-songs').html().replace(/&quot;/g,'"'));
+</script>
