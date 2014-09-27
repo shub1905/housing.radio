@@ -126,13 +126,13 @@
 
 <!-- templates -->
 <script id="song-template" type="text/template">
-	<li>
+	<li data-song-id={{id}}>
 		<p class="song-name">{{name}}</p>
 		<p class="song-duration">{{duration}}</p>
 		<p class="song-artist">{{artist}}</p>
 		<p class="vote"></p>
-		<p class="upvote"></p>
-		<p class="downvote"></p>
+		<div data-song-id={{id}} class="post-vote upvote"><div class="up-symbol"></div></div>
+		<div data-song-id={{id}} class="post-vote downvote"><div class="down-symbol"></div></div>
 		<div class="clear"></div>
 	</li>
 </script>

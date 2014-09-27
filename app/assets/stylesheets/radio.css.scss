@@ -115,6 +115,40 @@ div.song-list{
     }
     p.vote{
       font-weight: bold;
+      height: 28px;
+      width: 40px;
+    }
+    .upvote{
+      width: 40px;
+      height: 28px;
+      float: left;
+      padding: 7px 0;
+      cursor: pointer;
+    }
+    .up-symbol {
+      height: 100%;
+      border: 14px transparent solid;
+      border-bottom-color: green;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      width: 28px;
+      margin-top: -7px;
+    }
+    .down-symbol {
+      height: 100%;
+      border: 14px transparent solid;
+      border-top-color: red;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      width: 28px;
+      margin-top: 7px;
+    }
+    .downvote{
+      height: 28px;
+      width: 40px;
+      padding: 7px 0;
+      cursor: pointer;
+      float: left;
     }
     p{
       padding: 7px 0px;

@@ -25,10 +25,31 @@ $(document).ready(() ->
 		initialize: () ->
 			@list_div = @$el.find('.song-list-container')
 			@render()
+			@bind_votes()
 		
 		render: () ->
 			songs_collection.each (song) =>
 				@list_div.append @song_template(song.toJSON())
+
+		bind_votes: (e) ->
+			$('.post-vote').bind('click', (e) =>
+				if $(e.currentTarget).hasClass('upvote')
+					id = $(e.currentTarget).data('songId')
+					url = "/api/radio/upvote_song/#{id}"
+					$.ajax
+						type: 'POST'
+						url: url
+						success: (res) =>
+
+				else if $(e.currentTarget).hasClass('downvote')
+					id = $(e.currentTarget).data('songId')
+					url = "/api/radio/downvote_song/#{id}"
+					$.ajax
+						type: 'POST'
+						url: url
+						success: (res) =>
+
+				)
 
 		clear_list: () ->
 			@list_div.html('')
