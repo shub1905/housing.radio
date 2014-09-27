@@ -13,8 +13,10 @@
 <div class="song-view">
 	<div class="song-inside">
 		<%= image_tag 'sample_cover.jpg', class: "song-cover" %>
-		<h2>Stariway to Heaven</h2>
-		<h3>Led Zepplin</h3>
+		<h2 class="song-title">Stariway to Heaven</h2>
+		<h3 class="song-artist">Led Zepplin</h3>
+		<div class="pause-button"></div>
+		<div class="clear"></div>
 	</div>
 </div>
 <div class="song-list">
@@ -136,8 +138,4 @@
 </script>
 <script id="data-songs" type="application/json">
 	<%= @queue_songs.to_json %>
-</script>
-
-<script>
-	var songs = JSON.parse($('#data-songs').html().replace(/&quot;/g,'"'));
 </script>
