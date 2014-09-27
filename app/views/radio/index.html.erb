@@ -22,7 +22,7 @@
 <div class="song-list">
 	<input type=search name=s class="search" placeholder="search for a song">
 	<ul class="song-list-container">
-		<% @queue_songs.each_with_index do |song, index| %>
+<!-- 		<% @queue_songs.each_with_index do |song, index| %>
 			<% if index < 2 %>
 				<li class="queue-fixed">
 			<% elsif index == 2 %>
@@ -32,7 +32,7 @@
 			<% end %>
 				<p class="song-name"><%= song.name %></p><p class="song-duration">4:32</p><p class="song-artist"><%= song.artist %></p><p class="vote">45</p><div class="clear"></div>
 			</li>
-		<% end %>
+		<% end %> -->
 	</ul>
 </div>
 <div class = "clear"></div>
@@ -127,15 +127,17 @@
 <!-- templates -->
 <script id="song-template" type="text/template">
 	<li>
-		<p class="song-name"></p>
-		<p class="song-duration"></p>
-		<p class="dong-artist"></p>
+		<p class="song-name">{{name}}</p>
+		<p class="song-duration">{{duration}}</p>
+		<p class="song-artist">{{artist}}</p>
 		<p class="vote"></p>
 		<p class="upvote"></p>
 		<p class="downvote"></p>
 		<div class="clear"></div>
 	</li>
 </script>
+
+<!-- songs json -->
 <script id="data-songs" type="application/json">
 	<%= @queue_songs.to_json %>
 </script>
