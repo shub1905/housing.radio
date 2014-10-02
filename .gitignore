@@ -17,3 +17,6 @@
 
 # Ignore the songs
 app/assets/music
+
+# Ignore the fucking mac DS_Store
+.DS_Store
