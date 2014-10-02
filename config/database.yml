@@ -1,11 +1,10 @@
 development:
   adapter: postgresql
-  database: housing_radio_production
+  database: muse_radio
   pool: 5
   timeout: 5000
-  username: housing
-  password: housing
-  host: 10.1.10.4
+  username: satan
+  password: shub
   port: 5432
   su_username: housing_su
   su_password: housing
