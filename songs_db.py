@@ -24,7 +24,7 @@ def insert_in_db(db_con):
 	cursor = db_con.cursor()
 
 	#file listing
-	for root, dirnames, filenames in os.walk('music'):
+	for root, dirnames, filenames in os.walk('public/music'):
 		for filename in fnmatch.filter(filenames, file_type):
 			music_file = os.path.join(root, filename)
 			try:
